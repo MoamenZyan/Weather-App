@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+
+{% block body %}
+<div class="header">
+    <h1>My Weather App</h1>
+    <p>Please Enter Your City:</p>
+</div>
+
+<div class="input-div">
+    <input class="input" type="text" id="text-input">
+    <button id="button">Get Info</button>
+</div>
+
+<div class="container">
+    <div class="result-container">
+        <div id="icon"></div>
+        <div id="temp"></div>
+        <div id="info">
+            <div id="location"></div>
+            <div id="time"></div>
+            <div id="desc"></div>
+            <div id="err"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

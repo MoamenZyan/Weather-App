@@ -1,0 +1,185 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Tahoma;
+}
+
+h1 {
+    color: #149595;
+}
+
+.header {
+    text-align: center;
+    margin: 10px;
+}
+
+.input-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 30px auto;
+    position: relative;
+}
+
+.input-div input {
+    outline: none;
+    max-width: 30%;
+    padding-left: 10px;
+    height: 35px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border-color: gray;
+    background-color: #FFF;
+}
+
+#button {
+    margin-top: 10px;
+    min-width: 10%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.result-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+#icon {
+    display: flex;
+    align-items: center;
+}
+
+#temp p{
+    font-size: 50pt;
+    font-family: "poppins", sans-serif;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#info {
+    display: flex;
+}
+
+#info div{
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#info p{
+    font-size: 15pt;
+}
+
+
+
+@media (max-width: 340px) {
+    #button {
+        width: 30%;
+        height: 40px;
+        padding: 5px;
+        font-size: 13pt;
+    }
+    .result-container {
+        width: 80%;
+        height: 200px;
+    }
+    .input-div input {
+        width: 300px;
+        font-size: 20pt;
+        height: 40px;
+    }
+}
+
+@media (min-width:340px) {
+    .result-container {
+        width: 80%;
+    }
+    .input-div input {
+        max-width: 60%;
+        font-size: 20pt;
+        height: 40px;
+    }
+    #button {
+        width: 30%;
+        height: 40px;
+        padding: 5px;
+        font-size: 17pt;
+    }
+    #info {
+        flex-direction: column;
+        align-items: center;
+        justify-content: left;
+    }
+    #info div{
+        align-items: center;
+        margin: 0px;
+    }
+}
+
+@media (min-width:480px) {
+    .result-container {
+        font-size: 22pt;
+        width: 80%;
+        padding: 25px 20px;
+    }
+    .header {
+        font-size: 20pt;
+    }
+
+    .input-div input {
+        max-width: 100%;
+        font-size: 20pt;
+        height: 40px;
+    }
+
+    #button {
+        width: 30%;
+        padding: 10px;
+        font-weight: 700;
+        font-size: 15pt;
+    }
+}
+
+@media (min-width:768px) {
+    .result-container {
+        font-size: 22pt;
+        width: 80%;
+        padding: 10px auto;
+    }
+    #button {
+        max-width: 15%;
+        padding: 10px;
+        font-weight: 700;
+        font-size: 15pt;
+    }
+}
+
+@media (min-width: 1120px) {
+    .result-container {
+        font-size: 22pt;
+        width: 80%;
+        padding: 10px auto;
+    }
+    #button {
+        max-width: 15%;
+        padding: 10px;
+        font-weight: 700;
+        font-size: 15pt;
+    }
+    .input-div input {
+        width: 30%;
+    }
+}
