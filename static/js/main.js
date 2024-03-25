@@ -12,9 +12,8 @@ var err = document.getElementById("err");
 
 
 button.addEventListener("click", function(){
-    const key = "efcc53c9202b49c2b39112905232912"
     var city = inputElement.value
-    const url = `http://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`
+    const url = `https://visual-crossing-weather.p.rapidapi.com/forecast?aggregateHours=24&location=${city}&contentType=json&unitGroup=uk&shortColumnNames=true`;
     if (city == "") {
         err.innerHTML = `<p style="font-size: 20pt;">Please Enter A City</p>`
         place.innerHTML = ""
@@ -24,13 +23,19 @@ button.addEventListener("click", function(){
         temp.innerHTML = ""
     }
     else {
-        fetch(url)
+        fetch(url, {
+            method: "GET",
+            headers: {
+                'X-RapidAPI-Key': '718a4a8248msh4cb9123f9b48ed1p142a91jsnb0bdba18dcf8',
+                'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
+            }
+        })
         .then(res => {
             if (res.ok) {
                 return res.json();
             }
             else {
-                if (res.status == 400) {
+                if (res.status != 200) {
                     throw Error("City Not Found");
                 }
                 else {
@@ -39,27 +44,30 @@ button.addEventListener("click", function(){
             }
         })
         .then(data => {
-            icon.innerHTML = `
-                <img src="${data['current']['condition']['icon']}" width="120" height="120" alt="Icon">
-            `;
-
+            let currentDate = new Date(data['locations'][city]['currentConditions']['datetime']);
+            var year = currentDate.getFullYear();
+            var month = currentDate.getMonth() + 1;
+            var day = currentDate.getDate();
+            var hours = currentDate.getHours();
+            var minutes = currentDate.getMinutes();
+            var formattedDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
             temp.innerHTML = `
-                <p>${data['current']['temp_c']}° C</p>
+                <p>${data['locations'][city]['currentConditions']['temp']}° C</p>
             `;
 
             place.innerHTML = `
                 <img src="static/icons/location.png" alt="Icon" width="30" height="30" style="margin-right: 10px;">
-                <p>${data['location']['name']}, ${data['location']['country']}</p>
+                <p>${data['locations'][city]['address']}</p>
             `;
 
             time.innerHTML = `
                 <img src="static/icons/clock.png" alt="Icon" width="28" height="28" style="margin-right: 10px;">
-                <p>${data['location']['localtime']}</p>
+                <p>${formattedDateTime}</p>
             `;
 
             desc.innerHTML = `
                 <img src="static/icons/info.png" alt="Icon" width="28" height="28" style="margin-right: 10px;">
-                <p>${data['current']['condition']['text']}</p>
+                <p>${data['locations'][city]['currentConditions']['icon']}</p>
             `;
         })
         .finally(()=>{
